@@ -18,7 +18,7 @@ io.on("connection", socket => {
     console.log("socket id", socket.id);
     allCoordinates[socket.id] = coordinate;
     allCoordinates.time = now;
-    io.emit("all coordinates", allCoordinates);
+    io.sockets.emit("all coordinates", allCoordinates);
   });
 
   socket.on("disconnect", () => {
