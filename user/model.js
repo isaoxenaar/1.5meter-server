@@ -25,6 +25,9 @@ const User = db.define(
     songMP3: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    socketId: {
+      type: Sequelize.STRING
     }
   },
   {
