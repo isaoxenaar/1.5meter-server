@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+const Warning = require("./warning/model");
 
 const User = db.define(
   "user",
@@ -31,5 +32,6 @@ const User = db.define(
     tableName: "users"
   }
 );
-
+User.hasMany(Warning);
+Warning.belongsTo(User);
 module.exports = User;
