@@ -1,13 +1,13 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-const Warning = require("./warning/model");
+const Warning = require("../warning/model");
 
 const User = db.define(
   "user",
   {
     username: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: true
     },
     email: {
       type: Sequelize.STRING,
@@ -20,14 +20,15 @@ const User = db.define(
     },
     profileUrl: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: true
     },
     songMP3: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: true
     },
     socketId: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: true
     }
   },
   {
@@ -37,4 +38,5 @@ const User = db.define(
 );
 User.hasMany(Warning);
 Warning.belongsTo(User);
+
 module.exports = User;

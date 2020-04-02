@@ -8,13 +8,14 @@ const bodyParser = require("body-parser");
 const authRouter = require("./auth/router");
 const userRouter = require("./user/router");
 const db = require("./db");
-const { User } = require("./user/model");
+const User = require("./user/model");
+
+app.use(cors());
 
 const server = http.createServer(app);
 const io = socketIO(server);
 const allCoordinates = {};
 
-app.use(cors());
 app.use(bodyParser.json());
 app.use(authRouter);
 app.use(userRouter);
@@ -30,6 +31,12 @@ io.on("connection", socket => {
     allCoordinates[socket.id] = coordinate;
     allCoordinates[socket.id].time = now;
     io.sockets.emit("all coordinates", allCoordinates);
+  });
+
+  socket.on("user login", async user => {
+    console.log("login", user, socket.id);
+    const userUpdate = await User.findByPk(user.userId);
+    await userUpdate.update({ socketId: socket.id });
   });
 
   socket.on("disconnect", () => {

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const User = db.define("warning", {
+const Warning = db.define("warning", {
   time: {
     type: Sequelize.STRING,
     allowNull: false
@@ -13,4 +13,4 @@ const User = db.define("warning", {
   }
 });
 
-module.exports = User;
+module.exports = Warning;

@@ -5,7 +5,7 @@ const auth = require("../auth/middleware");
 router.get("/warning", async (request, response, next) => {
   try {
     const warnings = await Warning.findAll();
-    response.send(events);
+    response.send(warnings);
   } catch (error) {
     next(error);
   }
