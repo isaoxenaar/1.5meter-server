@@ -6,6 +6,10 @@ const Warning = db.define("warning", {
     type: Sequelize.STRING,
     allowNull: false
   },
+  location: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   targetId: {
     type: Sequelize.STRING,
     allowNull: false,
