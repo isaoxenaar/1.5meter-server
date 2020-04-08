@@ -6,7 +6,11 @@ const Warning = db.define("warning", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  location: {
+  latitude: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  longitude: {
     type: Sequelize.STRING,
     allowNull: false
   },

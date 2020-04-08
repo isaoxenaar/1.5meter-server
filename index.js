@@ -7,6 +7,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const authRouter = require("./auth/router");
 const userRouter = require("./user/router");
+const warningRouter = require("./warning/router");
 const db = require("./db");
 const User = require("./user/model");
 
@@ -19,6 +20,7 @@ const allCoordinates = {};
 app.use(bodyParser.json());
 app.use(authRouter);
 app.use(userRouter);
+app.use(warningRouter);
 
 io.on("connection", socket => {
   console.log("New client connected", socket.id);
