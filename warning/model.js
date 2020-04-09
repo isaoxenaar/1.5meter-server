@@ -16,8 +16,7 @@ const Warning = db.define("warning", {
   },
   targetId: {
     type: Sequelize.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   }
 });
 

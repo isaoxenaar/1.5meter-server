@@ -15,16 +15,12 @@ router.get("/warning", async (request, response, next) => {
 router.post("/warning", auth, async (request, response, next) => {
   try {
     const { body } = request;
-    console.log("body in warnign router", body);
-    const warning = await Warning.create({
-      time: body.time,
-      latitude: body.latitude,
-      longitude: body.longitude,
-      targetId: body.targetId,
-      userId: request.user.id
-    });
+    const fullRequest = { ...body, userId: request.user.id };
+    console.log("body in warnign router", request.user.id);
+    const warning = await Warning.create(fullRequest);
     response.send(warning);
   } catch (error) {
+    console.log("error", error);
     next(error);
   }
 });
