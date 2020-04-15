@@ -41,6 +41,12 @@ io.on("connection", socket => {
     await userUpdate.update({ socketId: socket.id });
   });
 
+  socket.on("user logout", async (user) => {
+    delete allCoordinates[socket.id];
+    const userUpdate = await User.findByPk(user.userId);
+    await userUpdate.update({ socketId: null });
+  });
+  
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });

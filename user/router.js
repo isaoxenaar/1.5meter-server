@@ -9,7 +9,7 @@ router.post("/user", (request, response, next) => {
   const user = { ...request.body, password };
 
   User.create(user)
-    .then(user => response.send(user))
+    .then((user) => response.send(user))
     .catch(next);
 });
 
@@ -17,6 +17,20 @@ router.get("/user", async (request, response, next) => {
   try {
     const users = await User.findAll(request.body);
     response.send(users);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/user/:id", async (request, response, next) => {
+  try {
+    const { id } = request.params;
+
+    const user = await User.findByPk(id);
+
+    const updated = await user.update(request.body);
+
+    response.send(updated);
   } catch (error) {
     next(error);
   }
